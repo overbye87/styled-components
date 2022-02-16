@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
-import styled, { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
 //import "normalize.css";
 
 const Global = createGlobalStyle`
@@ -9,13 +9,25 @@ const Global = createGlobalStyle`
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: consolas;  
 }
 `;
 
+const theme = {
+  colors: {
+    primary: "orange",
+    secondary: "red",
+  },
+  media: {
+    phone: "(max-width: 425px)",
+    tablet: "(max-width: 768px) and (min-width: 425px)",
+  },
+};
+
 ReactDOM.render(
-  <React.StrictMode>
+  <ThemeProvider theme={theme}>
     <Global />
     <App />
-  </React.StrictMode>,
+  </ThemeProvider>,
   document.getElementById("root")
 );
